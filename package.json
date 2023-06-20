@@ -1,0 +1,24 @@
+{
+  "name": "node.js-hw-1st",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OleksiiPanaioti/node.js-hw-1st.git"
+  },
+  "author": "Oleksii Panaioti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OleksiiPanaioti/node.js-hw-1st/issues"
+  },
+  "homepage": "https://github.com/OleksiiPanaioti/node.js-hw-1st#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
