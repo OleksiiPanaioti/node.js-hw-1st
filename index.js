@@ -34,7 +34,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       console.warn("\x1B[31m Unknown action type!");
   }
 };
-
+console.log(process.argv)
 invokeAction(argv);
 // invokeAction({action: "add", name: "ALex", email: "cave@gamil.com", phone: "0820820820282"});
 // invokeAction({action:"list"})
