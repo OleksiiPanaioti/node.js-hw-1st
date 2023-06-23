@@ -1,23 +1,41 @@
-console.log("hmother jezus");
-const fs = require("node:fs/promises");
+const { Command } = require("commander");
+const program = new Command();
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
 
-// fs.readFile("./text.txt", "UTF-8", (err, data) => {
-//   if (err) throw err;
-//   console.log(data);
-// });
+program.parse(process.argv);
 
-// fs.writeFile("./text.txt", `Hello ${Date.now()}`, (err, data) => {
-//   if (err) throw err;
+const argv = program.opts();
+const contacts = require("./contacts");
 
-//   console.log(data);
-// });
+const invokeAction = async ({ action, id, name, email, phone }) => {
+  switch (action) {
+    case "list":
+      const allContacts = await contacts.listContacts();
+      return console.log(allContacts);
 
-// fs.appendFile("./text.txt", `Hello world\n`, (err, data) => {
-//   if (err) throw err;
+    case "get":
+      const oneContact = await contacts.getContactById(id);
+      return console.log(oneContact);
 
-//   console.log(data);
-// });
+    case "add":
+      const newContact = await contacts.addContact({ name, email, phone });
+      return console.log(newContact);
 
-fs.readFile("./db/contacts.json", "UTF-8")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+    case "remove":
+      const removedContact = await contacts.removeContact(id);
+      return console.log(removedContact);
+
+    default:
+      console.warn("\x1B[31m Unknown action type!");
+  }
+};
+console.log(process.argv)
+invokeAction(argv);
+
+
+
